@@ -47,7 +47,7 @@ public class DailyTrip {
     @Column(nullable = false)
     private String route;
 
-    @OneToMany(fetch=FetchType.LAZY)
+    @OneToMany
     private List<User> attendants;
 
     @CreationTimestamp

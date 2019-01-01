@@ -20,11 +20,11 @@ public class TripRequest {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, optional = false)
+    @ManyToOne(cascade = CascadeType.REMOVE, optional = false)
     @NotNull
     private User reviewer;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, optional = false)
+    @ManyToOne(cascade = CascadeType.REMOVE, optional = false)
     @NotNull
     private User requester;
 
