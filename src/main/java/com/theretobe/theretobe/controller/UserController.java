@@ -13,13 +13,13 @@ import org.springframework.web.context.request.RequestContextHolder;
 import static com.theretobe.theretobe.Constants.*;
 
 @Controller
-@RequestMapping(path = "/user/{id}")
+@RequestMapping(path = "/user")
 public class UserController {
 
     @Autowired
     private UserRepository repository;
 
-    @GetMapping
+    @GetMapping(path = "/{id}")
     @ResponseBody
     public User get(@PathVariable("id") Long userId) {
         return repository.getOne(userId);
@@ -50,7 +50,7 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @PutMapping("/user/{id}/place")
+    @PutMapping("/{id}/place")
     @ResponseBody
     public ResponseEntity<User> create(@PathVariable("id") Long userId) {
         User user = repository.getOne(userId);
@@ -63,7 +63,7 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/{id}")
     @ResponseBody
     public int delete(@PathVariable("id") Long userId) {
         repository.deleteById(userId);
