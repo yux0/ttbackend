@@ -39,6 +39,10 @@ public class Trip {
     @Enumerated(EnumType.STRING)
     private TripStatus status;
 
+    private int viewCount;
+
+    private String Thumbnail;
+
     @CreationTimestamp
     private OffsetDateTime creationTime;
 
