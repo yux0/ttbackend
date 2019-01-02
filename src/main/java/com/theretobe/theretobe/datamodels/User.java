@@ -22,15 +22,9 @@ public class User {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-    @SerializedName(Constants.USER_FIRSTNAME)
+    @SerializedName(Constants.USER_NAME)
     @Column(nullable = false)
-    private String firstName;
-
-    private String middleName;
-
-    @SerializedName(Constants.USER_LASTNAME)
-    @Column(nullable = false)
-    private String lastName;
+    private String userName;
 
     private String nickName;
 
