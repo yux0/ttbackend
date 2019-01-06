@@ -9,7 +9,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.OffsetDateTime;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,9 +21,6 @@ public class Trip {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private User owner;
-
-    @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    private List<DailyTrip> dailyTrips;
 
     @NotNull
     @Column(nullable = false)
@@ -39,9 +35,33 @@ public class Trip {
     @Enumerated(EnumType.STRING)
     private TripStatus status;
 
-    private int viewCount;
-
+    @NotNull
+    @Column(nullable = false)
     private String Thumbnail;
+
+    @NotNull
+    @Column(nullable = false)
+    private OffsetDateTime startTime;
+
+    @NotNull
+    @Column(nullable = false)
+    private OffsetDateTime endTime;
+
+    @NotNull
+    @Column(nullable = false)
+    private String startLocation;
+
+    @NotNull
+    @Column(nullable = false)
+    private String endLocation;
+
+    @NotNull
+    @Column(nullable = false)
+    private String tripContent;
+
+    @NotNull
+    @Column(nullable = false)
+    private String route;
 
     @CreationTimestamp
     private OffsetDateTime creationTime;

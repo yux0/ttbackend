@@ -9,10 +9,10 @@ import javax.validation.constraints.NotNull;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
-@Entity(name = "daily_trip")
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@Data
+//@Entity(name = "daily_trip")
 //@EqualsAndHashCode(exclude={"creationTime", "lastUpdatedTime"})
 //@ToString(exclude = {"creationTime", "lastUpdatedTime"})
 public class DailyTrip {

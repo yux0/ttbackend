@@ -10,6 +10,9 @@ public final class Constants {
     public final static String USER_NICKNAME = "user_nickName";
     public final static String USER_PHONE = "user_phone";
     public final static String USER_PHOTO = "user_photo";
-    public final static String USER_SOUVENIR = "user_souvenir";
+    public final static String USER_FOOTPRINT = "user_footprint";
     public final static String USER_ID = "user_id";
+    public final static String TRIP_FILTER_DATE = "destination";
+    public final static String TRIP_FILTER_DEST = "startdate";
+    public final static int DEFAULT_PAGE_SIZE = 20;
 }

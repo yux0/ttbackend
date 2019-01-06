@@ -3,14 +3,13 @@ package com.theretobe.theretobe.controller;
 import com.google.gson.Gson;
 import com.theretobe.theretobe.dao.UserRepository;
 import com.theretobe.theretobe.datamodels.User;
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.servlet.support.RequestContext;
 
 import static com.theretobe.theretobe.Constants.*;
 
@@ -25,13 +24,13 @@ public class UserController {
 
     @GetMapping(path = "/{id}")
     @ResponseBody
-    public User get(@PathVariable("id") Long userId) {
-        return repository.findById(userId).get();
+    public HttpEntity<User> get(@PathVariable("id") Long userId) {
+        return ResponseEntity.ok(repository.findById(userId).get());
     }
 
-    @PutMapping("/create")
+    @PutMapping
     @ResponseBody
-    public ResponseEntity<User> create(@RequestBody String body) {
+    public HttpEntity<User> create(@RequestBody String body) {
         User user = gson.fromJson(body, User.class);
 
         repository.save(user);
@@ -40,10 +39,10 @@ public class UserController {
 
     @PutMapping("/{id}/place")
     @ResponseBody
-    public ResponseEntity<User> create(@PathVariable("id") Long userId) {
+    public HttpEntity<User> addFootprint(@PathVariable("id") Long userId) {
         User user = repository.getOne(userId);
         final RequestAttributes attributes = RequestContextHolder.getRequestAttributes();
-        final String newSouvenir = (String) attributes.getAttribute(USER_SOUVENIR, RequestAttributes.SCOPE_REQUEST);
+        final String newSouvenir = (String) attributes.getAttribute(USER_FOOTPRINT, RequestAttributes.SCOPE_REQUEST);
         String souvenir = user.getFootprint();
         souvenir += "," + newSouvenir;
         user.setFootprint(souvenir);
@@ -53,8 +52,8 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     @ResponseBody
-    public int delete(@PathVariable("id") Long userId) {
+    public HttpEntity delete(@PathVariable("id") Long userId) {
         repository.deleteById(userId);
-        return Response.SC_ACCEPTED;
+        return ResponseEntity.accepted().build();
     }
 }
