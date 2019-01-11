@@ -22,44 +22,31 @@ public class Trip {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private User owner;
 
-    @NotNull
     @Column(nullable = false)
     private Integer capacity;
 
-    @NotNull
-    @Column(nullable = false)
-    private Boolean allowJoinDailyTrip;
-
-    @NotNull
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private TripStatus status;
 
-    @NotNull
     @Column(nullable = false)
     private String Thumbnail;
 
-    @NotNull
     @Column(nullable = false)
     private OffsetDateTime startTime;
 
-    @NotNull
     @Column(nullable = false)
     private OffsetDateTime endTime;
 
-    @NotNull
     @Column(nullable = false)
     private String startLocation;
 
-    @NotNull
     @Column(nullable = false)
     private String endLocation;
 
-    @NotNull
     @Column(nullable = false)
     private String tripContent;
 
-    @NotNull
     @Column(nullable = false)
     private String route;
 

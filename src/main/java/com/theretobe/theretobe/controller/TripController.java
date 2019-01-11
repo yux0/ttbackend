@@ -3,7 +3,10 @@ package com.theretobe.theretobe.controller;
 import com.google.gson.Gson;
 import com.theretobe.theretobe.Constants;
 import com.theretobe.theretobe.dao.TripRepository;
+import com.theretobe.theretobe.dao.UserRepository;
 import com.theretobe.theretobe.datamodels.Trip;
+import com.theretobe.theretobe.datamodels.User;
+import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,6 +28,8 @@ public class TripController {
 
     @Autowired
     private TripRepository repository;
+    @Autowired
+    private UserRepository userRepository;
 
     private Gson gson = new Gson();
 
@@ -58,10 +63,11 @@ public class TripController {
 
     @PutMapping
     @ResponseBody
-    public HttpEntity<Trip> create(@RequestBody String body) {
-        Trip trip = gson.fromJson(body, Trip.class);
-        repository.save(trip);
-        return ResponseEntity.ok(trip);
+    public HttpEntity<Trip> create(@RequestBody Trip tripClaim, @RequestParam("id") Long id) {
+        User user =userRepository.findById(id).get();
+        tripClaim.setOwner(user);
+        repository.save(tripClaim);
+        return ResponseEntity.ok(tripClaim);
     }
 
     @DeleteMapping("/{id}")
