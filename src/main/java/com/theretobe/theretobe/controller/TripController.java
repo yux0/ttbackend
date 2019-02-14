@@ -6,7 +6,6 @@ import com.theretobe.theretobe.dao.TripRepository;
 import com.theretobe.theretobe.dao.UserRepository;
 import com.theretobe.theretobe.datamodels.Trip;
 import com.theretobe.theretobe.datamodels.User;
-import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
